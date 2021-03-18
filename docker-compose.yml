@@ -1,0 +1,21 @@
+version: '3.7'
+services: 
+  laravel-db: 
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: ediJM26
+      MYSQL_DATABASE: facturacion
+    ports: 
+      - 33069:3306
+    volumes:
+      - ./database/schemas/:/var/lib/mysql
+  
+  laravel:
+    build:
+      context: ./
+      dockerfile: dockerfile
+    ports:
+      - 8090:80
+    depends_on:
+      - laravel-db
+
